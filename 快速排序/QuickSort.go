@@ -4,12 +4,15 @@ import "fmt"
 
 func main() {
 
-	ages :=[] int {5,6,3,4,1,2,7,0 }
-	qc(ages,0, len(ages)-1)
+	ages := []int{6, 1, 2, 7, 9, 3, 4, 5, 10, 8}
+	qc(ages, 0, len(ages)-1)
 	//exchange(ages,1,2)
 	fmt.Println(ages)
 }
 
+// 对一个数组或者子数组进行排序
+// left:为开始坐标
+// right: 为结束坐标
 func qc(arr []int, left, right int) {
 	if left >= right {
 		return
@@ -23,8 +26,8 @@ func qc(arr []int, left, right int) {
 	// 基准下标
 	benchmarkIndex := left
 	toRight := true
-	for i <= j  {
-		fmt.Println(arr, "i=",i,"j=",j, "benchmarkIndex=", benchmarkIndex,"benchmarkValue=", benchmarkValue)
+	for i <= j {
+		fmt.Println(arr, "i=", i, "j=", j, "benchmarkIndex=", benchmarkIndex, "benchmarkValue=", benchmarkValue)
 		if toRight {
 			if benchmarkValue > arr[j] {
 				exchange(arr, j, benchmarkIndex)
@@ -40,7 +43,7 @@ func qc(arr []int, left, right int) {
 				benchmarkIndex = i
 				j--
 				toRight = true
-			}else {
+			} else {
 				i++
 			}
 		}
@@ -48,18 +51,18 @@ func qc(arr []int, left, right int) {
 	// process left side
 	fmt.Println("=== left side")
 	if benchmarkIndex == left {
-		qc(arr, left +1 , right)
+		qc(arr, left+1, right)
 	} else {
 		qc(arr, left, benchmarkIndex)
 	}
 	// process right side
 	fmt.Println("=== right side")
-	start2 := benchmarkIndex+1
+	start2 := benchmarkIndex + 1
 	end2 := right
-	qc(arr,start2,end2)
+	qc(arr, start2, end2)
 }
 
-func exchange(arr []int, x, y int){
+func exchange(arr []int, x, y int) {
 	xValue := arr[x]
 	arr[x] = arr[y]
 	arr[y] = xValue
