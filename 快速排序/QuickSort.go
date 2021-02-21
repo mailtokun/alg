@@ -1,10 +1,13 @@
+// 快速排序
+//
+//
 package main
 
 import "fmt"
 
 func main() {
 
-	ages := []int{6, 1, 2, 7, 9, 3, 4, 5, 10, 8}
+	ages := []int{6, 1, 2, 7, 9, 3}
 	qc(ages, 0, len(ages)-1)
 	//exchange(ages,1,2)
 	fmt.Println(ages)
@@ -25,24 +28,28 @@ func qc(arr []int, left, right int) {
 	benchmarkValue := arr[left]
 	// 基准下标
 	benchmarkIndex := left
-	toRight := true
+	toLeft := true
 	for i <= j {
-		fmt.Println(arr, "i=", i, "j=", j, "benchmarkIndex=", benchmarkIndex, "benchmarkValue=", benchmarkValue)
-		if toRight {
+		var currentWay string = "向右"
+		if toLeft {
+			currentWay = "向左"
+		}
+		fmt.Println(arr, currentWay, "i=", i, "j=", j, "benchmarkIndex=", benchmarkIndex, "benchmarkValue=", benchmarkValue)
+		if toLeft {
 			if benchmarkValue > arr[j] {
 				exchange(arr, j, benchmarkIndex)
 				benchmarkIndex = j
 				i++
-				toRight = false
+				toLeft = false
 			} else {
 				j--
 			}
 		} else {
-			if arr[i] > benchmarkValue {
+			if benchmarkValue < arr[i] {
 				exchange(arr, i, benchmarkIndex)
 				benchmarkIndex = i
 				j--
-				toRight = true
+				toLeft = true
 			} else {
 				i++
 			}
